@@ -32,7 +32,7 @@ public class TestUsers {
     }
 
     /**
-     * Creates a user with a valid membership in a course with the given id.
+     * Creates a user with valid membership(s) in a course with the given id.
      *
      * @param courseMemberships the memberships of the user
      * @return a user with a valid membership in a course with the given id
@@ -49,19 +49,20 @@ public class TestUsers {
     }
 
     /**
-     * Creates a user with a valid membership in a course with the given id.
+     * Creates a user with valid membership(s) & realm roles in a course with the given id.
      *
      * @param courseMemberships the memberships of the user
+     * @param realmRoles set of realm roles a user possesses
      * @return a user with a valid membership in a course with the given id
      */
-    public static LoggedInUser userWithMembershipsAndRealmRole(final LoggedInUser.CourseMembership... courseMemberships) {
+    public static LoggedInUser userWithMembershipsAndRealmRoles(final Set<LoggedInUser.RealmRole> realmRoles, final LoggedInUser.CourseMembership... courseMemberships) {
         return LoggedInUser.builder()
                 .userName("userWithMemberships")
                 .id(UUID.randomUUID())
                 .firstName("firstName")
                 .lastName("lastName")
                 .courseMemberships(List.of(courseMemberships))
-                .realmRoles(Set.of(LoggedInUser.RealmRole.COURSE_CREATOR))
+                .realmRoles(realmRoles)
                 .build();
     }
 
